@@ -17,16 +17,23 @@ function addMenuItem(shopName, item) {
 
 
 
-// function removeMenuItem(restaurant, item) {
-//   var message = `No one is eating our ${item.name}
-//     - it has been removed from the breakfast menu!`;
-//
-//     if (restaurant.menus[item.type].inclues(item)) {
-//       this.restaurant.menus[item.type].pop(item);
-//       return message;
-//     }
-//
-// };
+function removeMenuItem(restaurant, itemName, menuName) {
+  if (!menuName) {
+    return `Sorry, we don't sell ${itemName}, try adding a new recipe!`
+  }
+
+  var message = `No one is eating our ${itemName}` +
+  ` - it has been removed from the ${menuName} menu!`
+
+  var indexFinder = food => food.name === itemName;
+
+  var menuIndex = restaurant.menus[menuName].findIndex(indexFinder);
+
+  restaurant.menus[menuName].splice(menuIndex, 1);
+
+    return message;
+
+};
 
 
 module.exports = {
